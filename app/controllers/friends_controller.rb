@@ -64,7 +64,8 @@ class FriendsController < ApplicationController
     end
 
     # Only allow a list of trusted parameters through.
+    # Form fields are defined in the view file
     def friend_params
-      params.require(:friend).permit(:first_name, :last_name, :email, :phone, :twitter)
+      params.require(:friend).permit(:first_name, :last_name, :email, :phone, :twitter, :user_id)
     end
 end
