@@ -1,6 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-
     <a class="navbar-brand" href="<%= root_path %>">
       <img src="<%= asset_path('rails.png') %>" width="64" height="64" alt="Rails Logo">
     </a>
@@ -17,9 +16,24 @@
           <a class="nav-link" href="<%= friends_path %>">Friends</a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link" href="<%= new_friend_path %>">New Friend</a>
-        </li>
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to 'Edit Profile', edit_user_registration_path, class: 'nav-link' %>
+          </li>
+
+          <%= form_for :destroy_user_session, url: destroy_user_session_path, method: :delete, html: { class: 'd-inline' } do %>
+            <%= submit_tag 'Sign Out', class: 'nav-link btn btn-link' %>
+          <% end %>
+
+        <% else %>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= new_user_registration_path %>">Sign Up</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="<%= new_user_session_path %>">Sign In</a>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>
