@@ -1,2 +1,14 @@
 <h1>About Us</h1>
-<p>I don't know - friends???</p>
+<p>Welcome to our application!</p>
+
+<p>Currently, we have <%= @total_users %> users registered.</p>
+<p>And a total of <%= @total_friends %> friends added.</p>
+
+<!-- Optional: Add links for sign in/sign up based on authentication -->
+<% if user_signed_in? %>
+  <p>You are currently signed in as <%= current_user.email %>.</p>
+  <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'btn btn-danger' %>
+<% else %>
+  <p><%= link_to 'Sign In', new_user_session_path, class: 'btn btn-primary' %></p>
+  <p><%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-success' %></p>
+<% end %>
