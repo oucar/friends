@@ -1,10 +1,26 @@
-<p style="color: green"><%= notice %></p>
+<p class="text-success"><%= notice %></p>
 
-<%= render @friend %>
+<div class="card mb-4">
+  <div class="card-header">
+    <h2 class="card-title"><%= @friend.first_name %> <%= @friend.last_name %></h2>
+  </div>
+  <div class="card-body">
+    <dl class="row">
+      <dt class="col-sm-3">Email:</dt>
+      <dd class="col-sm-9"><%= @friend.email %></dd>
 
-<div>
-  <%= link_to "Edit this friend", edit_friend_path(@friend) %> |
-  <%= link_to "Back to friends", friends_path %>
+      <dt class="col-sm-3">Phone:</dt>
+      <dd class="col-sm-9"><%= @friend.phone %></dd>
 
-  <%= button_to "Destroy this friend", @friend, method: :delete %>
+      <dt class="col-sm-3">Twitter:</dt>
+      <dd class="col-sm-9"><%= @friend.twitter %></dd>
+    </dl>
+  </div>
+  <div class="card-footer text-end">
+    <div class="btn-group" role="group" aria-label="Friend actions">
+      <%= link_to "Edit", edit_friend_path(@friend), class: "btn btn-warning btn-sm rounded-3 me-2" %>
+      <%= link_to "Back to Friends", friends_path, class: "btn btn-secondary btn-sm rounded-3 me-2" %>
+      <%= button_to "Destroy", @friend, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm rounded-3" %>
+    </div>
+  </div>
 </div>
